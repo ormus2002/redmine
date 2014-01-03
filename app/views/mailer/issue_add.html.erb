@@ -1,0 +1,4 @@
+<%= l(:text_issue_added, :id => "##{@issue.id}", :author => h(@issue.author)) %>
+<hr />
+<%= render :partial => 'issue', :formats => [:html], :locals => { :issue => @issue, :issue_url => @issue_url } %>
+<span class="footer"><%= Setting.plugin_redmine_email_footers['issue_added'].html_safe %></span>

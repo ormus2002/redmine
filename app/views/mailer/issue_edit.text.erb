@@ -1,0 +1,16 @@
+<%= l(:text_issue_updated, :id => "##{@issue.id}", :author => @journal.user) %>
+
+<% details_to_strings(@journal.details, true).each do |string| -%>
+<%= string %>
+<% end -%>
+
+<% if @journal.notes? -%>
+<%= @journal.notes %>
+
+<% end -%>
+----------------------------------------
+<%= render :partial => 'issue', :formats => [:text], :locals => { :issue => @issue, :issue_url => @issue_url } %>
+<%= Setting.plugin_redmine_email_footers['issue_updated'].html_safe if Setting.notified_events.include?('issue_updated') %>
+<%= Setting.plugin_redmine_email_footers['issue_note_added'].html_safe if (Setting.notified_events.include?('issue_note_added') && @journal.notes.present?) %>
+<%= Setting.plugin_redmine_email_footers['issue_status_updated'].html_safe if (Setting.notified_events.include?('issue_status_updated') && @journal.new_status.present?) %>
+<%= Setting.plugin_redmine_email_footers['issue_priority_updated'].html_safe if (Setting.notified_events.include?('issue_priority_updated') && @journal.new_value_for('priority_id').present?) %>

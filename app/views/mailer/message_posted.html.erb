@@ -1,0 +1,5 @@
+<h1><%=h @message.board.project.name %> - <%=h @message.board.name %>: <%= link_to(h(@message.subject), @message_url) %></h1>
+<em><%=h @message.author %></em>
+
+<%= textilizable(@message, :content, :only_path => false) %>
+<span class="footer"><%= Setting.plugin_redmine_email_footers['message_posted'].html_safe %></span>

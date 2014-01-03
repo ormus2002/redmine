@@ -1,0 +1,4 @@
+<%= link_to(h(@document.title), @document_url) %> (<%=h @document.category.name %>)<br />
+<br />
+<%= textilizable(@document, :description, :only_path => false) %>
+<span class="footer"><%= Setting.plugin_redmine_email_footers['document_added'].html_safe %></span>

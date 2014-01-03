@@ -1,0 +1,16 @@
+<%= l(:text_issue_updated, :id => "##{@issue.id}", :author => h(@journal.user)) %>
+
+<ul>
+<% details_to_strings(@journal.details, false, :only_path => false).each do |string| %>
+  <li><%= string %></li>
+<% end %>
+</ul>
+
+<%= textilizable(@journal, :notes, :only_path => false) %>
+<hr />
+<%= render :partial => 'issue', :formats => [:html], :locals => { :issue => @issue, :issue_url => @issue_url } %>
+<span class="footer"><%= Setting.plugin_redmine_email_footers['issue_updated'].html_safe if Setting.notified_events.include?('issue_updated') %></span>
+<span class="footer"><%= Setting.plugin_redmine_email_footers['issue_note_added'].html_safe if (Setting.notified_events.include?('issue_note_added') && @journal.notes.present?) %></span>
+<span class="footer"><%= Setting.plugin_redmine_email_footers['issue_status_updated'].html_safe if (Setting.notified_events.include?('issue_status_updated') && @journal.new_status.present?) %></span>
+<span class="footer"><%= Setting.plugin_redmine_email_footers['issue_priority_updated'].html_safe if (Setting.notified_events.include?('issue_priority_updated') && @journal.new_value_for('priority_id').present?) %></span>
+          

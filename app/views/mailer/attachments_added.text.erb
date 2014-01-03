@@ -1,0 +1,5 @@
+<%= @added_to %><% @attachments.each do |attachment | %>
+- <%= attachment.filename %><% end %>
+
+<%= @added_to_url %>
+<%= Setting.plugin_redmine_email_footers['file_added'] %>

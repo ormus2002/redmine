@@ -1,0 +1,5 @@
+<h1><%= link_to(h(@news.title), @news_url) %></h1>
+<em><%=h @news.author.name %></em>
+
+<%= textilizable(@news, :description, :only_path => false) %>
+<span class="footer"><%= Setting.plugin_redmine_email_footers['news_added'].html_safe %></span>
